@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -47,15 +48,42 @@ namespace TechJobsConsole
 
             foreach (Dictionary<string, string> row in AllJobs)
             {
+                
                 string aValue = row[column];
+                if((aValue.ToUpper().Contains(value.ToUpper())))
 
-                if (aValue.Contains(value))
+                //if (aValue.Contains(value))
                 {
                     jobs.Add(row);
                 }
             }
 
             return jobs;
+        }
+
+       public static List<Dictionary<string, string>> FindByValue(string value)
+        {
+            LoadData();
+            
+            List<Dictionary<string, string>> myValue = new List<Dictionary<string, string>>();
+            foreach(Dictionary<string, string>myColumn in AllJobs)
+            {
+                foreach(KeyValuePair<string, string> pair in myColumn)
+                {
+                   
+                    if (myColumn.ContainsValue(value))// here is where I check case sensitivity
+                    {
+                        myValue.Add(myColumn);
+                    }
+                    else 
+                    {
+                        Console.WriteLine("No results");
+                    }
+                }
+
+                
+            }
+            return myValue;
         }
 
         /*
