@@ -39,7 +39,7 @@ namespace TechJobsConsole
             return values;
         }
 
-        public static List<Dictionary<string, string>> FindByColumnAndValue(string column, string value)
+        public static List<Dictionary<string, string>> FindByColumnAndValue(string column,string value)
         {
             // load data, if not already loaded
             LoadData();
@@ -64,41 +64,43 @@ namespace TechJobsConsole
 
             return jobs;
         }
-
-
-
-      
-
-
         public static List<Dictionary<string, string>> FindByValue(string value)
-          {
-              LoadData();
-            
-             
-              List<Dictionary<string, string>> myValue = new List<Dictionary<string, string>>();
-              foreach(Dictionary<string, string>mySearch in  AllJobs)
-              {
-                
+        {
+            LoadData();
 
-                if (mySearch.ContainsValue(value))
-                
+
+            List<Dictionary<string, string>> myValue = new List<Dictionary<string, string>>();
+            foreach (Dictionary<string, string> mySearch in AllJobs)
+            {
+
+
+                if (mySearch.ContainsValue(value.ToUpper()))
+
 
 
                 {
                     myValue.Add(mySearch);
-                }        
-                
+                }
 
-                
-              }
 
-              return myValue;
 
-          }
+            }
 
-          /*
-           * Load and parse data from job_data.csv
-           */
+            return myValue;
+
+        }
+
+
+
+
+
+
+
+
+
+        /*
+         * Load and parse data from job_data.csv
+         */
 
         private static void LoadData()
         {
