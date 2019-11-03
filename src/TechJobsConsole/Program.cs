@@ -53,12 +53,14 @@ namespace TechJobsConsole
                 {
                     // How does the user want to search (e.g. by skill or employer)
                     string columnChoice = GetUserSelection("Search", columnChoices);
+                   //string allChoices = GetUserSelection("all",columnChoices);
 
                     // What is their search term?
                     Console.WriteLine("\nSearch term: ");
                     string searchTerm = Console.ReadLine();
 
                     List<Dictionary<string, string>> searchResults;
+                    
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
@@ -66,15 +68,31 @@ namespace TechJobsConsole
                         //Call the FindByValue method here
                         searchResults = JobData.FindByValue(searchTerm);
                         PrintJobs(searchResults);
-                        
+                        if (searchResults != JobData.FindByValue(searchTerm))
+                        {
+                            Console.WriteLine("No resutls");
+                        }
+
                     }
-                    else
+
+
+                    else if (!columnChoice.Equals("all"))
                     {
+
                         searchResults = (JobData.FindByColumnAndValue(columnChoice, searchTerm));
                         PrintJobs(searchResults);
+                        if (searchResults != JobData.FindByColumnAndValue(columnChoice, searchTerm))
+                        {
+                            Console.WriteLine("No results");
+                        }
                     }
+                   
+                    
                 }
             }
+            
+            
+
         }
 
         /*
@@ -121,17 +139,21 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            //foreach list(dict) somejob in somejobs
 
-            
-            foreach(Dictionary<string, string> job in someJobs)//this loop iterates through the strings in the list. In this case someJobs is the list
+       
+
+            foreach (Dictionary<string, string> job in someJobs)//this loop iterates through the strings in the list. In this case someJobs is the list
             {
-                foreach(KeyValuePair<string, string> pair in job)//this loope iterates into the dictionary pairs. In this case job is the dictionary pairs.
+                Console.WriteLine("\n****");//this line before the looping through the dictionary, will separate each search result.
+                foreach (KeyValuePair<string, string> pair in job)//this loope iterates into the dictionary pairs. In this case job is the dictionary pairs.
                 {
-                    //Console.WriteLine("\n***All" +string.Format("{0}:{1}", pair.Key, pair.Value+ "Jobs***"));
-                    Console.WriteLine(string.Format("{0}:{1}", pair.Key, pair.Value));
+                    
+                    string myString = (string.Format("{0}:{1}", pair.Key, pair.Value));
+                    
+                    Console.WriteLine(myString);
+                    
                 }
-                //Console.ReadLine();
+                
             }
             
 
@@ -139,3 +161,12 @@ namespace TechJobsConsole
         }
     }
 }
+
+
+/*List<string> results = JobData.FindAll(columnChoice);
+
+Console.WriteLine("\n*** All " + columnChoices[columnChoice] + " Values ***");
+                        foreach (string item in results)
+                        {
+                            Console.WriteLine(item);
+                        }*/

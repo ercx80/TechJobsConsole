@@ -46,49 +46,60 @@ namespace TechJobsConsole
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
+            
             foreach (Dictionary<string, string> row in AllJobs)
             {
+
                 
                 string aValue = row[column];
-                if((aValue.ToUpper().Contains(value.ToUpper())))
+                if ((aValue.ToUpper().Contains(value.ToUpper())))
 
-                //if (aValue.Contains(value))
+               
                 {
                     jobs.Add(row);
-                }
+                }           
+
             }
+            
 
             return jobs;
         }
 
-       public static List<Dictionary<string, string>> FindByValue(string value)
-        {
-            LoadData();
+
+
+      
+
+
+        public static List<Dictionary<string, string>> FindByValue(string value)
+          {
+              LoadData();
             
-            List<Dictionary<string, string>> myValue = new List<Dictionary<string, string>>();
-            foreach(Dictionary<string, string>myColumn in AllJobs)
-            {
-                foreach(KeyValuePair<string, string> pair in myColumn)
+             
+              List<Dictionary<string, string>> myValue = new List<Dictionary<string, string>>();
+              foreach(Dictionary<string, string>mySearch in  AllJobs)
+              {
+                
+
+                if (mySearch.ContainsValue(value))
+                
+
+
                 {
-                   
-                    if (myColumn.ContainsValue(value))// here is where I check case sensitivity
-                    {
-                        myValue.Add(myColumn);
-                    }
-                    else 
-                    {
-                        Console.WriteLine("No results");
-                    }
-                }
+                    myValue.Add(mySearch);
+                }        
+                
 
                 
-            }
-            return myValue;
-        }
+              }
 
-        /*
-         * Load and parse data from job_data.csv
-         */
+              return myValue;
+
+          }
+
+          /*
+           * Load and parse data from job_data.csv
+           */
+
         private static void LoadData()
         {
 
