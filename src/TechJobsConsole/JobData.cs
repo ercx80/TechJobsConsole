@@ -69,12 +69,12 @@ namespace TechJobsConsole
             LoadData();
 
 
-            List<Dictionary<string, string>> myValue = new List<Dictionary<string, string>>();
-            foreach (Dictionary<string, string> mySearch in AllJobs)
+            List<Dictionary<string, string>> myValue = new List<Dictionary<string, string>>();//here I create an object of Dictionary type. myValue is going to hold the value I pass
+            foreach (Dictionary<string, string> mySearch in AllJobs)//I loop through the columns in search of the value
             {
 
 
-                if (mySearch.ContainsValue(value.ToUpper()))
+                if (mySearch.ContainsValue(value.ToUpper()))//If my search contains the value i passed, then it gets added to my value and returned.
 
 
 

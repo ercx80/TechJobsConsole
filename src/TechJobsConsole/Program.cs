@@ -145,7 +145,7 @@ namespace TechJobsConsole
             foreach (Dictionary<string, string> job in someJobs)//this loop iterates through the strings in the list. In this case someJobs is the list
             {
                 Console.WriteLine("\n****");//this line before the looping through the dictionary, will separate each search result.
-                foreach (KeyValuePair<string, string> pair in job)//this loope iterates into the dictionary pairs. In this case job is the dictionary pairs.
+                foreach (KeyValuePair<string, string> pair in job)//this loop iterates into the dictionary pairs. In this case job is the dictionary pairs.
                 {
                     
                     string myString = (string.Format("{0}:{1}", pair.Key, pair.Value));
@@ -163,10 +163,3 @@ namespace TechJobsConsole
 }
 
 
-/*List<string> results = JobData.FindAll(columnChoice);
-
-Console.WriteLine("\n*** All " + columnChoices[columnChoice] + " Values ***");
-                        foreach (string item in results)
-                        {
-                            Console.WriteLine(item);
-                        }*/
