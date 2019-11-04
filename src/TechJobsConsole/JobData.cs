@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -70,17 +71,21 @@ namespace TechJobsConsole
 
 
             List<Dictionary<string, string>> myValue = new List<Dictionary<string, string>>();//here I create an object of Dictionary type. myValue is going to hold the value I pass
-            foreach (Dictionary<string, string> mySearch in AllJobs)//I loop through the columns in search of the value
+            foreach (Dictionary<string, string> mySearch in AllJobs)//I loop through all the jobs in the dictionary
             {
-
-
-                if (mySearch.ContainsValue(value.ToUpper()))//If my search contains the value i passed, then it gets added to my value and returned.
-
-
-
+                foreach(string key in mySearch.Keys)//Here I loop through  each column(key) in search for the vale passed
                 {
-                    myValue.Add(mySearch);
+                    if (mySearch[key].ToUpper().Contains(value.ToUpper()))//If my search contains the value i passed, I make it case insensitive, then it gets added to my value and returned.
+
+
+
+                    {
+                        myValue.Add(mySearch);
+                    }
+
                 }
+
+
 
 
 
